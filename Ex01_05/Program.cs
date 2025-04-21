@@ -118,25 +118,38 @@ namespace Ex01_05
 
         private static void getMostFrequentDigit(string i_userNum, out int o_mostFrequentDigit, out int o_countOfMostFrequentDigit)
         {
-            int[] digitCountsForEach = new int[10];
+                int count0 = 0, count1 = 0, count2 = 0, count3 = 0, count4 = 0;
+                int count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
 
-            foreach (char c in i_userNum)
-            {
-                int digit = c - '0';
-                digitCountsForEach[digit]++;
-            }
-
-            o_mostFrequentDigit = 0;
-            o_countOfMostFrequentDigit = digitCountsForEach[0];
-
-            for (int i = 1; i < 10; i++)
-            {
-                if (digitCountsForEach[i] > o_countOfMostFrequentDigit)
+                foreach (char c in i_userNum)
                 {
-                    o_countOfMostFrequentDigit = digitCountsForEach[i];
-                    o_mostFrequentDigit = i;
+                    switch (c)
+                    {
+                        case '0': count0++; break;
+                        case '1': count1++; break;
+                        case '2': count2++; break;
+                        case '3': count3++; break;
+                        case '4': count4++; break;
+                        case '5': count5++; break;
+                        case '6': count6++; break;
+                        case '7': count7++; break;
+                        case '8': count8++; break;
+                        case '9': count9++; break;
+                    }
                 }
-            }
+
+                o_mostFrequentDigit = 0;
+                o_countOfMostFrequentDigit = count0;
+
+                if (count1 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 1; o_countOfMostFrequentDigit = count1; }
+                if (count2 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 2; o_countOfMostFrequentDigit = count2; }
+                if (count3 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 3; o_countOfMostFrequentDigit = count3; }
+                if (count4 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 4; o_countOfMostFrequentDigit = count4; }
+                if (count5 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 5; o_countOfMostFrequentDigit = count5; }
+                if (count6 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 6; o_countOfMostFrequentDigit = count6; }
+                if (count7 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 7; o_countOfMostFrequentDigit = count7; }
+                if (count8 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 8; o_countOfMostFrequentDigit = count8; }
+                if (count9 > o_countOfMostFrequentDigit) { o_mostFrequentDigit = 9; o_countOfMostFrequentDigit = count9; }
         }
 
         private static void printMostFrequentDigit(string i_userNum)

@@ -10,148 +10,144 @@ namespace Ex01_04
     {
         public static void Main()
         {
-            Get12CharactersFromUser(out string userString);
+            get12CharactersFromUser(out string userString);
 
-            PrintIfPalindrome(userString);
+            printIfPalindrome(userString);
 
-            if (IsAllDigits(userString))
+            if (isAllDigits(userString))
             {
-                PrintIfDivisibleBy3(userString);
-                return;
+                printIfDivisibleBy3(userString);
             }
-            else if (IsAllLetters(userString))
+            else if (isAllLetters(userString))
             {
-                PrintUpperCaseCount(userString);
-                PrintIfOrderedAlphabetically(userString);
-                return;
+                printUpperCaseCount(userString);
+                printIfOrderedAlphabetically(userString);
             }
         }
 
-        private static void Get12CharactersFromUser(out string o_result)
+        private static void get12CharactersFromUser(out string o_userString)
         {
             Console.WriteLine("Please enter a string of exactly 12 characters:");
-            o_result = Console.ReadLine();
+            o_userString = Console.ReadLine();
 
-            while (o_result == null || o_result.Length != 12)
+            while (string.IsNullOrEmpty(o_userString) || o_userString.Length != 12)
             {
                 Console.WriteLine("Invalid input. Please enter exactly 12 characters:");
-                o_result = Console.ReadLine();
+                o_userString = Console.ReadLine();
             }
         }
 
-        private static bool IsPalindrome(string i_str)
+        private static bool isPalindrome(string i_userString)
         {
-            for (int i = 0, j = i_str.Length - 1; i < j; i++, j--)
+            bool isPalindrome = true;
+            for (int i = 0, j = i_userString.Length - 1; i < j; i++, j--)
             {
-                if (char.ToLower(i_str[i]) != char.ToLower(i_str[j]))
+                if (char.ToLower(i_userString[i]) != char.ToLower(i_userString[j]))
                 {
-                    return false;
+                    isPalindrome = false;
                 }
             }
-            return true;
+            return isPalindrome;
         }
 
-        private static void PrintIfPalindrome(string i_str)
+        private static void printIfPalindrome(string i_userString)
         {
-            if (IsPalindrome(i_str))
+            string resultPolindromeForPrint = "is";
+            if (isPalindrome(i_userString) == false)
             {
-                Console.WriteLine("The string is a palindrome.");
+                resultPolindromeForPrint = "is not";
             }
-            else
-            {
-                Console.WriteLine("The string is not a palindrome.");
-            }
+            Console.WriteLine(string.Format("The string {0} a palindrome.", resultPolindromeForPrint));
         }
 
-        private static bool IsAllDigits(string i_str)
+        private static bool isAllDigits(string i_userString)
         {
-            foreach (char c in i_str)
+            bool isAllDigits = true;
+            foreach (char c in i_userString)
             {
                 if (!char.IsDigit(c))
                 {
-                    return false;
+                    isAllDigits = false;
                 }
             }
-            return true;
+            return isAllDigits;
         }
 
-        private static bool IsDigitSumDivisibleBy3(string i_str)
+        private static bool isDigitSumDivisibleBy3(string i_userString)
         {
-            int digitSum = 0;
+            int sumOfDigits = 0;
 
-            foreach (char c in i_str)
+            foreach (char c in i_userString)
             {
-                digitSum += c - '0';
+                sumOfDigits += c - '0';
             }
 
-            return digitSum % 3 == 0;
+            return sumOfDigits % 3 == 0;
         }
 
-        private static void PrintIfDivisibleBy3(string i_str)
+        private static void printIfDivisibleBy3(string i_userString)
         {
-            if (IsDigitSumDivisibleBy3(i_str))
+            string resultDevidedBy3ForPrint = "is";
+            if (isDigitSumDivisibleBy3(i_userString) == false)
             {
-                Console.WriteLine("The number is divisible by 3.");
+                resultDevidedBy3ForPrint = "is not";
             }
-            else
-            {
-                Console.WriteLine("The number is not divisible by 3.");
-            }
+            Console.WriteLine(string.Format("The number {0} divisible by 3.", resultDevidedBy3ForPrint));
         }
 
-        private static bool IsAllLetters(string i_str)
+        private static bool isAllLetters(string i_userString)
         {
-            foreach (char c in i_str)
+            bool isAllLetters = true;
+            foreach (char c in i_userString)
             {
                 if (!char.IsLetter(c))
                 {
-                    return false;
+                    isAllLetters = false;
                 }
             }
-            return true;
+            return isAllLetters;
         }
 
-        private static int CountUpperCaseLetters(string i_str)
+        private static int countUpperCaseLetters(string i_userString)
         {
-            int count = 0;
-            foreach (char c in i_str)
+            int countOfUpperCaseLetters = 0;
+            foreach (char c in i_userString)
             {
                 if (char.IsUpper(c))
                 {
-                    count++;
+                    countOfUpperCaseLetters++;
                 }
             }
-            return count;
+            return countOfUpperCaseLetters;
         }
 
-        private static void PrintUpperCaseCount(string i_str)
+        private static void printUpperCaseCount(string i_userString)
         {
-            int numOfUpperCaseLetters = CountUpperCaseLetters(i_str);
-            Console.WriteLine($"Number of uppercase letters: {numOfUpperCaseLetters}");
+            Console.WriteLine(string.Format("Number of uppercase letters: {0}", countUpperCaseLetters(i_userString)));
         }
 
-        private static bool IsAlphabeticallyOrdered(string i_str)
+        private static bool isAlphabeticallyOrdered(string i_userString)
         {
-            for (int i = 0; i < i_str.Length - 1; i++)
+            bool isAlphabeticallyOrdered = true;
+            for (int i = 0; i < i_userString.Length - 1; i++)
             {
-                if (char.ToLower(i_str[i]) > char.ToLower(i_str[i + 1]))
+                if (char.ToLower(i_userString[i]) > char.ToLower(i_userString[i + 1]))
                 {
-                    return false;
+                    isAlphabeticallyOrdered = false;
                 }
             }
-            return true;
+            return isAlphabeticallyOrdered;
         }
 
-        private static void PrintIfOrderedAlphabetically(string i_str)
+        private static void printIfOrderedAlphabetically(string i_userString)
         {
-            if (IsAlphabeticallyOrdered(i_str))
+            string resultAlphabeticallyForPrint = "is";
+            if(isAlphabeticallyOrdered(i_userString) == false)
             {
-                Console.WriteLine("The string is ordered alphabetically.");
+                resultAlphabeticallyForPrint = "is not";
             }
-            else
-            {
-                Console.WriteLine("The string is not ordered alphabetically.");
-            }
+            Console.WriteLine(string.Format("The string {0} in alphabetical order.", resultAlphabeticallyForPrint));
         }
     }
 }
+
