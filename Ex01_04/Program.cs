@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +41,7 @@ namespace Ex01_04
         {
             bool isPalindrome = true;
             for (int i = 0, j = i_userString.Length - 1; i < j; i++, j--)
+
             {
                 if (char.ToLower(i_userString[i]) != char.ToLower(i_userString[j]))
                 {
@@ -71,6 +72,7 @@ namespace Ex01_04
                 }
             }
             return isAllDigits;
+
         }
 
         private static bool isDigitSumDivisibleBy3(string i_userString)
@@ -106,6 +108,7 @@ namespace Ex01_04
                 }
             }
             return isAllLetters;
+
         }
 
         private static int countUpperCaseLetters(string i_userString)
@@ -130,6 +133,7 @@ namespace Ex01_04
         {
             bool isAlphabeticallyOrdered = true;
             for (int i = 0; i < i_userString.Length - 1; i++)
+
             {
                 if (char.ToLower(i_userString[i]) > char.ToLower(i_userString[i + 1]))
                 {
@@ -137,6 +141,7 @@ namespace Ex01_04
                 }
             }
             return isAlphabeticallyOrdered;
+
         }
 
         private static void printIfOrderedAlphabetically(string i_userString)
