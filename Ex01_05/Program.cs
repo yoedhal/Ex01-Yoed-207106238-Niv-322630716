@@ -11,122 +11,154 @@ namespace Ex01_05
     {
         public static void Main()
         {
-            string input = Get12CharStringFromUser();
-            PrintIfPalindrome(input);
+            string numberStr = Get8DigitNumberFromUser();
 
-            if (IsAllDigits(input))
-            {
-                PrintIfDivisibleBy3(input);
-            }
-            else if (IsAllLetters(input))
-            {
-                PrintUpperCaseCount(input);
-                PrintIfOrderedAlphabetically(input);
-            }
+            PrintDigitsSmallerThanFirst(numberStr);
+            PrintDigitsDivisibleBy3(numberStr);
+            PrintMaxMinDifference(numberStr);
+            PrintMostFrequentDigit(numberStr);
         }
 
-        private static string Get12CharStringFromUser()
+        private static string Get8DigitNumberFromUser()
         {
-            Console.WriteLine("Please enter a string of exactly 12 characters:");
+            Console.WriteLine("Please enter a number with exactly 8 digits:");
             string input = Console.ReadLine();
 
-            while (string.IsNullOrEmpty(input) || input.Length != 12)
+            while (!IsValid8DigitNumber(input))
             {
-                Console.WriteLine("Invalid input. Please enter exactly 12 characters:");
+                Console.WriteLine("Invalid input. Please enter exactly 8 digits:");
                 input = Console.ReadLine();
             }
 
             return input;
         }
 
-        private static bool IsPalindrome(string input)
+        private static bool IsValid8DigitNumber(string i_str)
         {
-            for (int i = 0, j = input.Length - 1; i < j; i++, j--)
+            if (i_str.Length != 8)
             {
-                if (Char.ToLower(input[i]) != Char.ToLower(input[j]))
+                return false;
+            }
+
+            foreach (char c in i_str)
+            {
+                if (!char.IsDigit(c))
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
-        private static void PrintIfPalindrome(string input)
+        private static void GetDigitsSmallerThanFirst(string i_numberStr, out string o_smallerDigits, out int o_count)
         {
-            Console.WriteLine(string.Format(
-                "The string {0} a palindrome.", IsPalindrome(input) ? "is" : "is not"));
-        }
+            char firstDigit = i_numberStr[0];
+            StringBuilder builder = new StringBuilder();
+            o_count = 0;
 
-        private static bool IsAllDigits(string input)
-        {
-            foreach (char c in input)
+            for (int i = 1; i < i_numberStr.Length; i++)
             {
-                if (!Char.IsDigit(c))
+                if (i_numberStr[i] < firstDigit)
                 {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static void PrintIfDivisibleBy3(string input)
-        {
-            int sum = 0;
-            foreach (char c in input)
-            {
-                sum += c - '0';
-            }
-
-            Console.WriteLine(string.Format(
-                "The number {0} divisible by 3.",
-                (sum % 3 == 0) ? "is" : "is not"));
-        }
-
-        private static bool IsAllLetters(string input)
-        {
-            foreach (char c in input)
-            {
-                if (!Char.IsLetter(c))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static void PrintUpperCaseCount(string input)
-        {
-            int count = 0;
-            foreach (char c in input)
-            {
-                if (Char.IsUpper(c))
-                {
-                    count++;
+                    builder.Append(i_numberStr[i]);
+                    builder.Append(' ');
+                    o_count++;
                 }
             }
 
-            Console.WriteLine(string.Format("Number of uppercase letters: {0}", count));
+            o_smallerDigits = builder.ToString().Trim();
         }
 
-        private static bool IsAlphabeticallyOrdered(string input)
+        private static void PrintDigitsSmallerThanFirst(string i_numberStr)
         {
-            for (int i = 0; i < input.Length - 1; i++)
+            GetDigitsSmallerThanFirst(i_numberStr, out string smallerDigits, out int count);
+            Console.WriteLine($"There are {count} digit(s) smaller than the first digit ({i_numberStr[0]}): {smallerDigits}");
+        }
+
+        private static void GetDigitsDivisibleBy3(string i_numberStr, out string o_digits, out int o_count)
+        {
+            StringBuilder builder = new StringBuilder();
+            o_count = 0;
+
+            for (int i = 0; i < i_numberStr.Length; i++)
             {
-                if (Char.ToLower(input[i]) > Char.ToLower(input[i + 1]))
+                int digit = i_numberStr[i] - '0';
+
+                if (digit % 3 == 0)
                 {
-                    return false;
+                    builder.Append(digit);
+                    builder.Append(' ');
+                    o_count++;
                 }
             }
-            return true;
+
+            o_digits = builder.ToString().Trim();
         }
 
-        private static void PrintIfOrderedAlphabetically(string input)
+        private static void PrintDigitsDivisibleBy3(string i_numberStr)
         {
-            Console.WriteLine(string.Format(
-                "The string {0} in alphabetical order.",
-                IsAlphabeticallyOrdered(input) ? "is" : "is not"));
+            GetDigitsDivisibleBy3(i_numberStr, out string divisibleDigits, out int count);
+            Console.WriteLine($"There are {count} digit(s) divisible by 3: {divisibleDigits}");
+        }
+
+        private static void GetMinMaxDigits(string i_numberStr, out int o_min, out int o_max)
+        {
+            o_min = 9;
+            o_max = 0;
+
+            foreach (char c in i_numberStr)
+            {
+                int digit = c - '0';
+                if (digit < o_min)
+                {
+                    o_min = digit;
+                }
+
+                if (digit > o_max)
+                {
+                    o_max = digit;
+                }
+            }
+        }
+
+        private static void PrintMaxMinDifference(string i_numberStr)
+        {
+            GetMinMaxDigits(i_numberStr, out int min, out int max);
+            int diff = max - min;
+            Console.WriteLine($"The largest digit is {max}, the smallest is {min}, difference is {diff}.");
+        }
+
+        private static void GetMostFrequentDigit(string i_numberStr, out int o_digit, out int o_count)
+        {
+            int[] digitCounts = new int[10]; // index = digit
+
+            foreach (char c in i_numberStr)
+            {
+                int digit = c - '0';
+                digitCounts[digit]++;
+            }
+
+            o_digit = 0;
+            o_count = digitCounts[0];
+
+            for (int i = 1; i < 10; i++)
+            {
+                if (digitCounts[i] > o_count)
+                {
+                    o_count = digitCounts[i];
+                    o_digit = i;
+                }
+            }
+        }
+
+        private static void PrintMostFrequentDigit(string i_numberStr)
+        {
+            GetMostFrequentDigit(i_numberStr, out int mostCommon, out int count);
+            Console.WriteLine($"The most frequent digit is {mostCommon}, and it appears {count} time(s).");
         }
     }
 }
+
 
 
