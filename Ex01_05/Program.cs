@@ -17,28 +17,23 @@ namespace Ex01_05
             printMaxMinDifference(userNum);
             printMostFrequentDigit(userNum);
         }
-
         private static void get8DigitNumberFromUser(out string o_userNum)
         {
             Console.WriteLine("Please enter a number with exactly 8 digits:");
             o_userNum = Console.ReadLine();
-
             while (isValid8DigitNumber(o_userNum)==false)
             {
                 Console.WriteLine("Invalid input. Please enter exactly 8 digits:");
                 o_userNum = Console.ReadLine();
             }
         }
-
         private static bool isValid8DigitNumber(string i_str)
         {
             bool isValid = true;
-
             if (i_str.Length != 8)
             {
                 isValid = false;
             }
-
             foreach (char c in i_str)
             {
                 if (!char.IsDigit(c))
@@ -48,13 +43,11 @@ namespace Ex01_05
             }
             return isValid;
         }
-
         private static void getDigitsSmallerThanFirst(string i_userNum, out StringBuilder o_smallerDigits, out int o_countOfNumBiggerThanFirstDig)
         {
             char firstDigit = i_userNum[0];
             o_smallerDigits = new StringBuilder();
             o_countOfNumBiggerThanFirstDig = 0;
-
             for (int i = 1; i < i_userNum.Length; i++)
             {
                 if (i_userNum[i] < firstDigit)
@@ -65,22 +58,18 @@ namespace Ex01_05
                 }
             }
         }
-
         private static void printDigitsSmallerThanFirst(string i_userNum)
         {
             getDigitsSmallerThanFirst(i_userNum, out StringBuilder o_smallerDigits, out int o_countOfNumBiggerThanFirstDig);
             Console.WriteLine($"There are {o_countOfNumBiggerThanFirstDig} digit(s) smaller than the first digit ({i_userNum[0]}): {o_smallerDigits}");
         }
-
         private static void getDigitsDivisibleBy3(string i_userNum, out StringBuilder o_digitsdevidedby3, out int o_countOfDigsDevidedBy3)
         {
             o_digitsdevidedby3 = new StringBuilder();
             o_countOfDigsDevidedBy3 = 0;
-
             for (int i = 0; i < i_userNum.Length; i++)
             {
                 int currentDigitInNum = i_userNum[i] - '0';
-
                 if (currentDigitInNum % 3 == 0)
                 {
                     o_digitsdevidedby3.Append(currentDigitInNum);
@@ -89,18 +78,15 @@ namespace Ex01_05
                 }
             }
         }
-
         private static void printDigitsDivisibleBy3(string i_userNum)
         {
             getDigitsDivisibleBy3(i_userNum, out StringBuilder o_digitsdevidedby3, out int o_countOfDigsDevidedBy3);
             Console.WriteLine($"There are {o_countOfDigsDevidedBy3} digit(s) divisible by 3: {o_digitsdevidedby3}");
         }
-
         private static void getMinMaxDigits(string i_userNum, out int o_minDigit, out int o_maxDigit)
         {
             o_minDigit = 9;
             o_maxDigit = 0;
-
             foreach (char c in i_userNum)
             {
                 int currentDigitInNum = c - '0';
@@ -108,19 +94,16 @@ namespace Ex01_05
                 o_maxDigit = Math.Max(o_maxDigit, currentDigitInNum);
             }
         }
-
         private static void printMaxMinDifference(string i_userNum)
         {
             getMinMaxDigits(i_userNum, out int o_minDigit, out int o_maxDigit);
             int maxDifference = o_maxDigit - o_minDigit;
             Console.WriteLine($"The largest digit is {o_maxDigit}, the smallest is {o_minDigit}, difference is {maxDifference}.");
         }
-
         private static void getMostFrequentDigit(string i_userNum, out int o_mostFrequentDigit, out int o_countOfMostFrequentDigit)
         {
                 int count0 = 0, count1 = 0, count2 = 0, count3 = 0, count4 = 0;
                 int count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
-
                 foreach (char c in i_userNum)
                 {
                     switch (c)
@@ -137,7 +120,6 @@ namespace Ex01_05
                         case '9': count9++; break;
                     }
                 }
-
                 o_mostFrequentDigit = 0;
                 o_countOfMostFrequentDigit = count0;
 
