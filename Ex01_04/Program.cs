@@ -41,14 +41,15 @@ namespace Ex01_04
 
         private static bool IsPalindrome(string i_str)
         {
+            bool isPalindrome = true;
             for (int i = 0, j = i_str.Length - 1; i < j; i++, j--)
             {
                 if (char.ToLower(i_str[i]) != char.ToLower(i_str[j]))
                 {
-                    return false;
+                    isPalindrome = false;
                 }
             }
-            return true;
+            return isPalindrome;
         }
 
         private static void PrintIfPalindrome(string i_str)
@@ -65,14 +66,15 @@ namespace Ex01_04
 
         private static bool IsAllDigits(string i_str)
         {
+            bool allDigits = true;
             foreach (char c in i_str)
             {
                 if (!char.IsDigit(c))
                 {
-                    return false;
+                    allDigits = false;
                 }
             }
-            return true;
+            return allDigits;
         }
 
         private static bool IsDigitSumDivisibleBy3(string i_str)
@@ -101,14 +103,15 @@ namespace Ex01_04
 
         private static bool IsAllLetters(string i_str)
         {
+            bool allLetters = true;
             foreach (char c in i_str)
             {
                 if (!char.IsLetter(c))
                 {
-                    return false;
+                    allLetters = false;
                 }
             }
-            return true;
+            return allLetters;
         }
 
         private static int CountUpperCaseLetters(string i_str)
@@ -132,14 +135,15 @@ namespace Ex01_04
 
         private static bool IsAlphabeticallyOrdered(string i_str)
         {
+            bool isAlphabetically = true;
             for (int i = 0; i < i_str.Length - 1; i++)
             {
                 if (char.ToLower(i_str[i]) > char.ToLower(i_str[i + 1]))
                 {
-                    return false;
+                    isAlphabetically = false;
                 }
             }
-            return true;
+            return isAlphabetically;
         }
 
         private static void PrintIfOrderedAlphabetically(string i_str)
