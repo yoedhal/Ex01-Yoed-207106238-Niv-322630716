@@ -14,8 +14,7 @@ namespace Ex01_02
             printNumbersTreeRec(ref currentChar, 1);
             Console.ReadLine();
         }
-        
-        public static void printNumbersTreeRec(ref char io_currentChar, int io_currentNumber)
+        private static void printNumbersTreeRec(ref char io_currentChar, int io_currentNumber)
         {
             if(io_currentChar == 'H')
             {
@@ -36,12 +35,11 @@ namespace Ex01_02
                     Console.WriteLine();
                     io_currentChar = (char)(io_currentChar + 1);
                     printNumbersTreeRec(ref io_currentChar, io_currentNumber);
-
                 }
                 
             }
         }
-        public static string stringOfSpaces(char i_currentChar)
+        private static string stringOfSpaces(char i_currentChar)
         {
             int distanceBetweenCurrentAndLastChar = ('E' - i_currentChar);
             string stringWithSpaces = " ";
@@ -76,7 +74,6 @@ namespace Ex01_02
                 }
                 
             }
-
             return stringToPrint;
         }
 

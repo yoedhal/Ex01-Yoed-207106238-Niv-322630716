@@ -15,7 +15,7 @@ namespace Ex01_01
             int[] decimalArray = convertBinaryArrayToDecimalArray(binaryNumberArray);
             sortDecimalArray(ref decimalArray);
             printDecimalArray(decimalArray, decimalArray.Length);
-          
+
             float averageDecimalNumbers = getAverageDecimalNumbers(decimalArray);
             int theLongestSequenceOfOnes = getLongestSequenceOfOnes(binaryNumberArray, out string longestSequenceOfOnesNumber);
             
@@ -32,7 +32,6 @@ The longest sequence of ones is: {1} from {2}", values);
             printFlipsCount(binaryNumberArray);
             PrintBinaryNumberWithMostOnes(binaryNumberArray);
             PrintTotalNumberOfOneBits(binaryNumberArray);
-
         }
 
         private static void getBinaryNumbersFromUser(out string[] o_BinaryNumbersArray)
@@ -52,9 +51,7 @@ The longest sequence of ones is: {1} from {2}", values);
                     Console.WriteLine("Your binary number is invalid!");
                 }
             }
-
         }
-
         private static bool isBinaryNumbersIsValid(string i_binaryNumber)
         {
             bool chechValidation = true;
@@ -79,8 +76,6 @@ The longest sequence of ones is: {1} from {2}", values);
        
         private static int[] convertBinaryArrayToDecimalArray(string[] binaryNumberArray)
         {
-            
-
             int[] decimalResultArray = new int[binaryNumberArray.Length];
 
             for (int i = 0; i < binaryNumberArray.Length; i++)
@@ -95,10 +90,8 @@ The longest sequence of ones is: {1} from {2}", values);
                         decimalValue += (int)Math.Pow(2, 6 - j);
                     }
                 }
-
                 decimalResultArray[i] = decimalValue;
             }
-
             return decimalResultArray;
         }
 
@@ -108,7 +101,6 @@ The longest sequence of ones is: {1} from {2}", values);
             Array.Reverse(io_DecimalArray);   
                                               
         }
-
         private static void printDecimalArray(int[] io_DecimalArray, int i_DecimalArrayLength)
         {
             Console.WriteLine("\nDecimal numbers in descending order:");
@@ -117,7 +109,6 @@ The longest sequence of ones is: {1} from {2}", values);
                 Console.WriteLine(io_DecimalArray[i]);
             }
         }
-
         private static float getAverageDecimalNumbers(int[] i_DecimalArray)
         {
             int sumOfDecimalsNumbers = 0;
@@ -133,7 +124,6 @@ The longest sequence of ones is: {1} from {2}", values);
 
         private static int getLongestSequenceOfOnes(string [] i_binaryNumberArray, out string io_longestSequenceOfOnesNumber)
         {
-      
                 int maxSequence = 0;
                 io_longestSequenceOfOnesNumber = i_binaryNumberArray[0]; // מאותחל לאיבר הראשון
 
@@ -157,16 +147,13 @@ The longest sequence of ones is: {1} from {2}", values);
                             currentCount = 0;
                         }
                     }
-
                     if (maxCountForCurrent > maxSequence)
                     {
                         maxSequence = maxCountForCurrent;
                         io_longestSequenceOfOnesNumber = i_binaryNumberArray[i];
                     }
                 }
-
                 return maxSequence; 
-
         }
 
         private static void printFlipsCount(string[] i_BinaryNumbers)
@@ -193,7 +180,6 @@ The longest sequence of ones is: {1} from {2}", values);
                     resultMessage += ", ";
                 }
             }
-
             Console.WriteLine(resultMessage);
         }
 
@@ -211,7 +197,6 @@ The longest sequence of ones is: {1} from {2}", values);
                     binaryNumberWithMostOnes = i_BinaryNumberArray[i];
                 }
             }
-
             int decimalValue = ConvertBinaryToDecimal(binaryNumberWithMostOnes);
             Console.WriteLine(string.Format("The number with the most 1s is: {0} (binary: {1})", decimalValue, binaryNumberWithMostOnes));
         }
@@ -226,7 +211,6 @@ The longest sequence of ones is: {1} from {2}", values);
                     onesCount++;
                 }
             }
-
             return onesCount;
         }
 
@@ -240,7 +224,6 @@ The longest sequence of ones is: {1} from {2}", values);
                     decimalValue += (int)Math.Pow(2, i_BinaryNumber.Length - 1 - i);
                 }
             }
-
             return decimalValue;
         }
 
@@ -260,13 +243,7 @@ The longest sequence of ones is: {1} from {2}", values);
                     }
                 }
             }
-
             Console.WriteLine(string.Format("Total number of '1' bits that appeared in all four inputs together: {0}", totalOnesCount));
         }
-
-
     }
-
-
-
 }

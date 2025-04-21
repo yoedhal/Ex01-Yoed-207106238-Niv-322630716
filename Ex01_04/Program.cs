@@ -11,9 +11,7 @@ namespace Ex01_04
         public static void Main()
         {
             get12CharactersFromUser(out string userString);
-
             printIfPalindrome(userString);
-
             if (isAllDigits(userString))
             {
                 printIfDivisibleBy3(userString);
@@ -24,7 +22,6 @@ namespace Ex01_04
                 printIfOrderedAlphabetically(userString);
             }
         }
-
         private static void get12CharactersFromUser(out string o_userString)
         {
             Console.WriteLine("Please enter a string of exactly 12 characters:");
@@ -36,7 +33,6 @@ namespace Ex01_04
                 o_userString = Console.ReadLine();
             }
         }
-
         private static bool isPalindrome(string i_userString)
         {
             bool isPalindrome = true;
@@ -49,7 +45,6 @@ namespace Ex01_04
             }
             return isPalindrome;
         }
-
         private static void printIfPalindrome(string i_userString)
         {
             string resultPolindromeForPrint = "is";
@@ -59,7 +54,6 @@ namespace Ex01_04
             }
             Console.WriteLine(string.Format("The string {0} a palindrome.", resultPolindromeForPrint));
         }
-
         private static bool isAllDigits(string i_userString)
         {
             bool isAllDigits = true;
@@ -72,17 +66,24 @@ namespace Ex01_04
             }
             return isAllDigits;
         }
-
         private static bool isDigitSumDivisibleBy3(string i_userString)
         {
             int sumOfDigits = 0;
+            bool isValidCheck = true;
 
             foreach (char c in i_userString)
             {
-                sumOfDigits += c - '0';
+                if (int.TryParse(c.ToString(), out int digit))
+                {
+                    sumOfDigits += digit;
+                }
+                else
+                {
+                    isValidCheck = false;
+                }
             }
-
-            return sumOfDigits % 3 == 0;
+            bool isDivisibleBy3 = sumOfDigits % 3 == 0;
+            return isValidCheck && isDivisibleBy3;
         }
 
         private static void printIfDivisibleBy3(string i_userString)
@@ -94,7 +95,6 @@ namespace Ex01_04
             }
             Console.WriteLine(string.Format("The number {0} divisible by 3.", resultDevidedBy3ForPrint));
         }
-
         private static bool isAllLetters(string i_userString)
         {
             bool isAllLetters = true;
@@ -107,7 +107,6 @@ namespace Ex01_04
             }
             return isAllLetters;
         }
-
         private static int countUpperCaseLetters(string i_userString)
         {
             int countOfUpperCaseLetters = 0;
@@ -120,12 +119,10 @@ namespace Ex01_04
             }
             return countOfUpperCaseLetters;
         }
-
         private static void printUpperCaseCount(string i_userString)
         {
             Console.WriteLine(string.Format("Number of uppercase letters: {0}", countUpperCaseLetters(i_userString)));
         }
-
         private static bool isAlphabeticallyOrdered(string i_userString)
         {
             bool isAlphabeticallyOrdered = true;
@@ -138,7 +135,6 @@ namespace Ex01_04
             }
             return isAlphabeticallyOrdered;
         }
-
         private static void printIfOrderedAlphabetically(string i_userString)
         {
             string resultAlphabeticallyForPrint = "is";

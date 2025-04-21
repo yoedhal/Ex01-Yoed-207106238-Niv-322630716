@@ -17,7 +17,6 @@ namespace Ex01_03
             printNumbersTreeRec(ref currentChar, lastLetterInTree, 1);
             Console.ReadLine();
         }
-
         private static int getHeightOfTreeFromUser()
         {
             Console.WriteLine("Please enter the height of the tree: ");
@@ -28,7 +27,6 @@ namespace Ex01_03
                 Console.WriteLine("The height is invalid!");
                 getHeightOfTreeFromUser();
             } 
-
             return heightFromUser;
         }
 
@@ -37,7 +35,7 @@ namespace Ex01_03
             return (char)('A' + i_Number - 1);
         }
 
-        public static void printNumbersTreeRec(ref char io_currentChar, char i_lastLetterInTree, int io_currentNumber)
+        private static void printNumbersTreeRec(ref char io_currentChar, char i_lastLetterInTree, int io_currentNumber)
         {
             if (io_currentChar == (char)(i_lastLetterInTree + 1))
             {
@@ -67,7 +65,7 @@ namespace Ex01_03
 
             }
         }
-        public static string stringOfSpaces(char i_currentChar, char i_lastLetterInTree)
+        private static string stringOfSpaces(char i_currentChar, char i_lastLetterInTree)
         {
             int distanceBetweenCurrentAndLastChar = (((char)(i_lastLetterInTree - 2)) - i_currentChar);
             string stringWithSpaces = " ";
@@ -78,7 +76,7 @@ namespace Ex01_03
             return stringWithSpaces;
         }
 
-        public static string stringOfNumbersToPrint(char i_currentChar, ref int io_currentNumber)
+        private static string stringOfNumbersToPrint(char i_currentChar, ref int io_currentNumber)
         {
             if (io_currentNumber > 9)
             {
@@ -102,7 +100,6 @@ namespace Ex01_03
                 }
 
             }
-
             return stringToPrint;
         }
 
